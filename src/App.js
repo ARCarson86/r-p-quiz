@@ -4,7 +4,13 @@ import DataTable from './components/DataTable';
 
 function App() {
   return (
-    <DataTable />
+    <div className="container">
+      <div className="row">
+        <div className="col-12">
+          <DataTable />
+        </div>
+      </div>
+    </div>
   );
 }
 

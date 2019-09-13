@@ -8,7 +8,12 @@ class DataTable extends React.Component{
 		super(props);
 
 		this.state = {
-			data: {}
+			data: {},
+			filters: {
+				land_success: true,
+				reuse: false,
+				with_reddit: false
+			}
 		}
 
 		axios.get('https://api.spacexdata.com/v2/launches').then(response => {

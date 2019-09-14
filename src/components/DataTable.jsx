@@ -59,8 +59,8 @@ class DataTable extends React.Component{
 		let filtered = this.state.filtered;
 		let filters = this.state.filters;
 
-		filters.land_success = !filters.land_success
-		filtered[0].value = filters.land_success ? "true" : "";
+		filters.with_reddit = !filters.with_reddit
+		filtered[2].value = filters.with_reddit ? "true" : "";
 
 		this.setState({filters: filters, filtered: filtered})
 	}
@@ -148,6 +148,28 @@ class DataTable extends React.Component{
 								return reuse.includes(true) ? "true" : "false"
 							},
 							id: "reused",
+							show: false,
+							filterMethod: (filter, row) => {
+								if(filter.value){
+									return row[filter.id] === "true";
+								}else{
+									return true;
+								}
+              }
+            },
+            {
+							accessor: (row) => {
+								let reddit = "false";
+								for (let property in row.links) {
+									if(property.startsWith('reddit_') && row.links[property]){
+										reddit = "true";
+										break;
+									}
+								}
+								
+								return reddit;
+							},
+							id: "with_reddit",
 							show: false,
 							filterMethod: (filter, row) => {
 								if(filter.value){

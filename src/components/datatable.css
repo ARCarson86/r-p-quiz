@@ -46,6 +46,10 @@ img{
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.ReactTable .pagination-bottom{
+	background-color: rgba(255,255,255,.75);
+}
 .launch-filters{
 	border-top: 1px solid rgba(255,255,255,.75);
 	border-left: 1px solid rgba(255,255,255,.75);

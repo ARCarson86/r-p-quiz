@@ -49,8 +49,8 @@ class DataTable extends React.Component{
 		let filtered = this.state.filtered;
 		let filters = this.state.filters;
 
-		filters.land_success = !filters.land_success
-		filtered[0].value = filters.land_success ? "true" : "";
+		filters.reused = !filters.reused
+		filtered[1].value = filters.reused ? "true" : "";
 
 		this.setState({filters: filters, filtered: filtered})
 	}
@@ -80,8 +80,6 @@ class DataTable extends React.Component{
 					filterable
 					filtered={this.state.filtered}
         	onFilteredChange={filtered => this.setState({ filtered })}
-        	showPagination={false}
-        	defaultPageSize={this.state.data.length}
 					columns={[
 						{
 							Header: "Badge",
@@ -146,18 +144,10 @@ class DataTable extends React.Component{
             },
             {
 							accessor: (row) => {
-								let success = 'false';
-								if(row.rocket.first_stage.cores.length > 0){
-									for(let e of row.rocket.first_stage.cores){
-										if(e.land_success){
-											success = 'true';
-											break;
-										}
-									}
-								}
-								return success;
+								let reuse = Object.values(row.reuse);
+								return reuse.includes(true) ? "true" : "false"
 							},
-							id: "land_success",
+							id: "reused",
 							show: false,
 							filterMethod: (filter, row) => {
 								if(filter.value){

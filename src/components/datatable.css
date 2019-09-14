@@ -16,6 +16,32 @@ img{
 	border-right: 0 none;
 }
 
+.ReactTable .rt-tbody{
+	padding-top: 15px;
+}
+
+.ReactTable .rt-tr{
+	background-color: rgba(255,255,255,.75);
+	border-radius: 5px;
+	margin-bottom: 5px;
+	transition: all .3s ease;
+}
+
+.ReactTable .rt-tr:hover{
+	background-color: #fff;
+}
+.ReactTable .rt-tr .rt-td:first-child{
+	flex-direction: row;
+}
+.ReactTable .rt-td{
+	flex-direction: column;
+	justify-content: center;
+	display: flex;
+	border-right: 0 none;
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .launch-filters{
 	border-top: 1px solid rgba(255,255,255,.75);
 	border-left: 1px solid rgba(255,255,255,.75);

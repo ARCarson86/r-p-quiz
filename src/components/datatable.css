@@ -2,3 +2,6 @@ img{
 	height: 40px;
 	width: auto;
 }
+.ReactTable .-filters{
+	display: none;
+}

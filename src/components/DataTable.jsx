@@ -80,6 +80,8 @@ class DataTable extends React.Component{
 					filterable
 					filtered={this.state.filtered}
         	onFilteredChange={filtered => this.setState({ filtered })}
+        	showPagination={false}
+        	defaultPageSize={this.state.data.length}
 					columns={[
 						{
 							Header: "Badge",
@@ -116,7 +118,7 @@ class DataTable extends React.Component{
 						{
 							Header: "Article",
 							accessor: "links.article_link",
-							Cell: ({value}) => (<a href={value} target="_blank"><img src={Link} /></a>),
+							Cell: ({value}) => (value ? <a href={value} target="_blank"><img src={Link} /></a> : ''),
 							filterable: false
 						},
 						{

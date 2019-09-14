@@ -5,3 +5,91 @@ img{
 .ReactTable .-filters{
 	display: none;
 }
+
+.ReactTable .-header{
+	background-color: #fff; /* Background should be a gradient */
+	padding: 5px 0;
+	color: #000; /* this color is not right */
+}
+
+.ReactTable .rt-thead .rt-th, .ReactTable .rt-thead .rt-td{
+	border-right: 0 none;
+}
+
+.launch-filters{
+	border-top: 1px solid rgba(255,255,255,.75);
+	border-left: 1px solid rgba(255,255,255,.75);
+	border-right: 1px solid rgba(255,255,255,.75);
+	background-color: rgba(255,255,255,.12);
+	padding: 10px;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+}
+
+.launch-filters button{
+	float: left;
+	height: 45px;
+	width: 45px;
+	background: none;
+	border: 2px solid #fff;
+	border-radius: 22.5px;
+}
+
+.launch-filters button:focus{
+	outline:;
+}
+.launch-filters button img{
+	width: 100%;
+	height: auto;
+	filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(243deg) brightness(107%) contrast(101%);
+}
+.launch-filters .filters{
+	float: right;
+	color: #fff;
+	text-transform: uppercase;
+	padding: 10px 0;
+}
+.launch-filters .filters label{
+	position: relative;
+	padding-left: 30px;
+	cursor: pointer;
+	display: inline-block;
+	margin-left: 15px;
+	margin-bottom: 0;
+}
+
+.launch-filters .filters label input{
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.launch-filters .filters label .checkbox{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 24px;
+	width: 24px;
+	background-color: transparent;
+	border-radius: 5px;
+	border: 1px solid #fff;
+}
+
+.launch-filters .filters label .checkbox::after{
+	position: absolute;
+  top: 0px;
+  left: 0px;
+  content: "";
+  height: 20px;
+  width: 20px;
+  background-image: url(./images/checkmark.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  display: none;
+  transition: all .3s ease;
+}
+
+.launch-filters .filters label input:checked ~ .launch-filters .filters label .checkbox::after{
+	display: block;
+}

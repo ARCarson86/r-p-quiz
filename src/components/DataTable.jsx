@@ -3,6 +3,7 @@ import axios from 'axios';
 import ReactTable from "react-table";
 import Moment from 'moment';
 import Link from './images/link.svg';
+import Refresh from './images/refresh.svg';
 import "react-table/react-table.css";
 import "./datatable.css";
 
@@ -14,11 +15,15 @@ class DataTable extends React.Component{
 			data: [],
 			isLoading: true,
 			filters: {
-				land_success: false
+				land_success: false,
+				reused: false,
+				with_reddit: false
 			},
-			filtered: [{
-				id: "land_success", value: ""
-			}]
+			filtered: [
+				{ id: "land_success", value: "" },
+				{ id: "reused", value: ""},
+				{ id: "with_reddit", value: ""}
+			]
 		}
 
 		this.getLaunches();
@@ -37,6 +42,31 @@ class DataTable extends React.Component{
 		filtered[0].value = filters.land_success ? "true" : "";
 
 		this.setState({filters: filters, filtered: filtered})
+	}
+
+	handleReused(e){
+		let filtered = this.state.filtered;
+		let filters = this.state.filters;
+
+		filters.land_success = !filters.land_success
+		filtered[0].value = filters.land_success ? "true" : "";
+
+		this.setState({filters: filters, filtered: filtered})
+	}
+
+	handleWithReddit(e){
+		let filtered = this.state.filtered;
+		let filters = this.state.filters;
+
+		filters.land_success = !filters.land_success
+		filtered[0].value = filters.land_success ? "true" : "";
+
+		this.setState({filters: filters, filtered: filtered})
+	}
+
+	handleRefresh(){
+		this.setState({ isLoading: true });
+		this.getLaunches();
 	}
 
 	renderTable(){
@@ -110,6 +140,29 @@ class DataTable extends React.Component{
 									return true;
 								}
               }
+            },
+            {
+							accessor: (row) => {
+								let success = 'false';
+								if(row.rocket.first_stage.cores.length > 0){
+									for(let e of row.rocket.first_stage.cores){
+										if(e.land_success){
+											success = 'true';
+											break;
+										}
+									}
+								}
+								return success;
+							},
+							id: "land_success",
+							show: false,
+							filterMethod: (filter, row) => {
+								if(filter.value){
+									return row[filter.id] === "true";
+								}else{
+									return true;
+								}
+              }
             }
 					]}
 				/>
@@ -124,15 +177,48 @@ class DataTable extends React.Component{
 			
 
 			<div>
-				<div>
-					<label>
-						          Land Success
-						          <input
-						            name="landSuccess"
-						            type="checkbox"
-						            checked={this.state.filters.land_success}
-						            onChange={event => {this.handleLandSuccess()}} />
-						        </label>
+				<div className="launch-filters clearfix">
+					<button onClick={() => this.handleRefresh()}>
+						<img src={Refresh} />
+					</button>
+					<div className="filters">
+						<span>
+							<label>
+						    <input
+			            name="landSuccess"
+			            type="checkbox"
+			            checked={this.state.filters.land_success}
+			            onChange={event => {this.handleLandSuccess()}} 
+			          />
+			          <span className="checkbox"></span>
+						    Land Success
+						  </label>
+						</span>
+						<span>
+							<label>
+						    <input
+			            name="reused"
+			            type="checkbox"
+			            checked={this.state.filters.reused}
+			            onChange={event => {this.handleReused()}} 
+			          />
+			          <span className="checkbox"></span>
+						    Reused
+						  </label>
+						</span>
+						<span>
+							<label>
+						    <input
+			            name="withReddit"
+			            type="checkbox"
+			            checked={this.state.filters.with_reddit}
+			            onChange={event => {this.handleWithReddit()}} 
+			          />
+			          <span className="checkbox"></span>
+						    With Reddit
+						  </label>
+						</span>
+					</div>
 				</div>
 				{this.renderTable()}
 			</div>

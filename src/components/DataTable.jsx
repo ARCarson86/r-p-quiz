@@ -72,7 +72,7 @@ class DataTable extends React.Component{
 
 	renderTable(){
 		if(this.state.isLoading){
-			return 'Loading Data';
+			return(<h2>Loading Data...</h2>);
 		}else{
 			return(
 				<ReactTable
@@ -80,6 +80,7 @@ class DataTable extends React.Component{
 					filterable
 					filtered={this.state.filtered}
         	onFilteredChange={filtered => this.setState({ filtered })}
+        	noDataText="No Results Found"
 					columns={[
 						{
 							Header: "Badge",
@@ -205,7 +206,7 @@ class DataTable extends React.Component{
 			            checked={this.state.filters.land_success}
 			            onChange={event => {this.handleLandSuccess()}} 
 			          />
-			          <span className="checkbox"></span>
+			          <span className={this.state.filters.land_success ? 'checkbox active' : 'checkbox'}></span>
 						    Land Success
 						  </label>
 						</span>
@@ -217,7 +218,7 @@ class DataTable extends React.Component{
 			            checked={this.state.filters.reused}
 			            onChange={event => {this.handleReused()}} 
 			          />
-			          <span className="checkbox"></span>
+			          <span className={this.state.filters.reused ? 'checkbox active' : 'checkbox'}></span>
 						    Reused
 						  </label>
 						</span>
@@ -229,7 +230,7 @@ class DataTable extends React.Component{
 			            checked={this.state.filters.with_reddit}
 			            onChange={event => {this.handleWithReddit()}} 
 			          />
-			          <span className="checkbox"></span>
+			          <span className={this.state.filters.with_reddit ? 'checkbox active' : 'checkbox'}></span>
 						    With Reddit
 						  </label>
 						</span>

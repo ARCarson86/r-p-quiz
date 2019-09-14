@@ -70,7 +70,7 @@ img{
 }
 
 .launch-filters button:focus{
-	outline:;
+	outline: none;
 }
 .launch-filters button img{
 	width: 100%;
@@ -120,10 +120,10 @@ img{
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  display: none;
   transition: all .3s ease;
+  opacity: 0;
 }
 
-.launch-filters .filters label input:checked ~ .launch-filters .filters label .checkbox::after{
-	display: block;
+.launch-filters .filters label .checkbox.active::after{
+	opacity: 1;
 }

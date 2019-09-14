@@ -33,6 +33,10 @@ img{
 .ReactTable .rt-tr .rt-td:first-child{
 	flex-direction: row;
 }
+.ReactTable .rt-tr .rt-td:last-child img{
+	filter: invert(82%) sepia(39%) saturate(4302%) hue-rotate(181deg) brightness(101%) contrast(101%); /* this fill is not corrent */
+	height: 20px;
+}
 .ReactTable .rt-td{
 	flex-direction: column;
 	justify-content: center;

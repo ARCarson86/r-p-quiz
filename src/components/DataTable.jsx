@@ -4,6 +4,7 @@ import ReactTable from "react-table";
 import Moment from 'moment';
 import Link from './images/link.svg';
 import Refresh from './images/refresh.svg';
+import Placeholder from './images/placeholder.png';
 import "react-table/react-table.css";
 import "./datatable.css";
 
@@ -83,7 +84,7 @@ class DataTable extends React.Component{
 						{
 							Header: "Badge",
 							accessor: "links.mission_patch_small",
-							Cell: ({value}) => (<img src={value} />),
+							Cell: ({value}) => (value ? <img src={value} /> : <img src={Placeholder} />),
 							filterable: false
 						},
 						{
